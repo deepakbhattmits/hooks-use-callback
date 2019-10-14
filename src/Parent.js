@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react'
-import Title from './Title';
-import Button from './Button';
-import Textbox from './Textbox';
+import Title from './Title'
+import Button from './Button'
+import Textbox from './Textbox'
+import DropDown from './DropDown'
 
 function Parent() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function Parent() {
 
   return (
     <div>
+      <DropDown />
       <Title />
 
       <Button count={count} handleClick={incrementCounter} />
