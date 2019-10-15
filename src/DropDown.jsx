@@ -5,7 +5,8 @@ class DropDown extends Component {
     state = {
         selectedOption: [],
         show: false,
-        stopPropagationOnClick: true
+        stopPropagationOnClick: true,
+        stopPropagationOnRemove: true
     };
     renderOptionDiv = () => {
         return (
@@ -42,10 +43,18 @@ class DropDown extends Component {
     };
     handleChange = e => {
         const { value } = e.target;
-        console.log(value);
-        const selectedOption = e.target.value;
-        this.setState({ selectedOption });
+        const selectedOption = OPTIONS.filter(el => el.title.toLowerCase() === value)
+        const { val, title } = selectedOption;
+        console.log(selectedOption)
+        this.setState({ selectedOption: { ...this.state.selectedOption, [val]: title } });
     };
+    removeItem = e => {
+        if (this.state.stopPropagationOnRemove) {
+            e.stopPropagation();
+        }
+        const { id } = e.target
+        console.log(id)
+    }
     render() {
         return (
             <div
@@ -55,7 +64,14 @@ class DropDown extends Component {
                 onClick={this.handleClick}
             >
                 <i className="dropdown icon" />
-                <input
+                {this.state.selectedOption && Object.values(this.state.selectedOption).map(el => {
+
+                    return (
+                        <label className="ui label transition visible active" key={el} id={el} style={{ 'display': 'inline-block !important' }} onClick={this.removeItem}>{el}
+                            <i className="delete icon" />
+                        </label>)
+                })
+                }<input
                     className="search"
                     autoComplete="off"
                     onChange={this.handleChange}
@@ -68,8 +84,8 @@ class DropDown extends Component {
                 >
                     {this.renderOptionDiv()}
                 </div>
-                {console.log(this.state.selectedOption)}
-            </div>
+
+            </div >
         );
     }
 }
