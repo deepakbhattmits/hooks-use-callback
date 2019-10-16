@@ -3,15 +3,18 @@ import { OPTIONS } from "./options";
 
 class DropDown extends Component {
     state = {
-        selectedOption: [],
+        options: OPTIONS,
+        selectedOption: "",
+        filteredOptionList: [],
         show: false,
         stopPropagationOnClick: true,
+        stopPropagationOnInput: true,
         stopPropagationOnRemove: true
     };
     renderOptionDiv = () => {
         return (
-            OPTIONS &&
-            OPTIONS.map(el => {
+            this.state.options &&
+            this.state.options.map(el => {
                 return (
                     <div
                         className="item"
@@ -26,13 +29,30 @@ class DropDown extends Component {
             })
         );
     };
+    filteredOption = title => {
+        console.log("want REMAIN : ", title);
+        const remainingOptions = this.state.options.filter(
+            el => el.title !== title
+        );
+        console.log("REMAIN : ", [...remainingOptions, remainingOptions]);
+    };
     handleClickList = e => {
         const { title, id } = e.target;
-        console.log("TEST", title, id);
-
-        this.setState({
-            selectedOption: { ...this.state.selectedOption, [id.toString()]: title }
-        });
+        const remainingOptions = this.state.options.filter(
+            el => el.title !== title
+        );
+        this.setState(
+            {
+                filteredOptionList: {
+                    ...this.state.filteredOptionList,
+                    [id.toString()]: title
+                },
+                options: remainingOptions
+            },
+            () => {
+                this.filteredOption(title);
+            }
+        );
         if (this.state.stopPropagationOnClick) {
             e.stopPropagation();
         }
@@ -41,20 +61,40 @@ class DropDown extends Component {
         e.stopPropagation();
         this.setState({ show: !this.state.show });
     };
-    handleChange = e => {
+    handleChangeInput = e => {
         const { value } = e.target;
-        const selectedOption = OPTIONS.filter(el => el.title.toLowerCase() === value)
-        const { val, title } = selectedOption;
-        console.log(selectedOption)
-        this.setState({ selectedOption: { ...this.state.selectedOption, [val]: title } });
+        const selectedOption = OPTIONS.filter(
+            el => el.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+        );
+        console.log("this is : ", selectedOption);
+        // this.setState({
+        //   selectedOption: {
+        //     ...this.state.selectedOption,
+        //     [selectedOption]: selectedOption
+        //   }
+        // });
+        if (this.state.stopPropagationOnInput) {
+            e.stopPropagation();
+        }
     };
     removeItem = e => {
         if (this.state.stopPropagationOnRemove) {
             e.stopPropagation();
         }
-        const { id } = e.target
-        console.log(id)
-    }
+        const { id } = e.target;
+        console.log(id);
+    };
+    KeyUp = e => {
+        console.log("keyup", e.target.value);
+        const { value } = e.target;
+        const selectedOption = OPTIONS.filter(
+            el => el.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+        );
+        console.log(selectedOption);
+        if (e.keyCode === 13) {
+            // this.setState({filteredOptionList: {...this.state.filteredOptionList,e.target.value})
+        }
+    };
     render() {
         return (
             <div
@@ -64,17 +104,26 @@ class DropDown extends Component {
                 onClick={this.handleClick}
             >
                 <i className="dropdown icon" />
-                {this.state.selectedOption && Object.values(this.state.selectedOption).map(el => {
-
-                    return (
-                        <label className="ui label transition visible active" key={el} id={el} style={{ 'display': 'inline-block !important' }} onClick={this.removeItem}>{el}
-                            <i className="delete icon" />
-                        </label>)
-                })
-                }<input
+                {this.state.filteredOptionList &&
+                    Object.values(this.state.filteredOptionList).map((el, i) => {
+                        return (
+                            <label
+                                className="ui label transition visible active"
+                                key={i}
+                                id={el}
+                                style={{ display: "inline-block !important" }}
+                                onClick={this.removeItem}
+                            >
+                                {el}
+                                <i className="delete icon" />
+                            </label>
+                        );
+                    })}
+                <input
                     className="search"
                     autoComplete="off"
-                    onChange={this.handleChange}
+                    onChange={this.handleChangeInput}
+                    onKeyUp={this.KeyUp}
                     value={this.selectedOption}
                 />
                 <div
@@ -84,8 +133,7 @@ class DropDown extends Component {
                 >
                     {this.renderOptionDiv()}
                 </div>
-
-            </div >
+            </div>
         );
     }
 }

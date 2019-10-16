@@ -12,7 +12,13 @@ body {
 .ui.container.grid {
     margin: 10px;
 }
-
+.ui.dimmer.fade.in.visible.active {
+  display: flex !important;
+}
+.ui.modals.scale.in.visible.active {
+  display: block !important;
+  animation-duration: 1000ms;
+}
 button {
   font: inherit;
   background: #ff2058;
