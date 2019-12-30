@@ -4,16 +4,23 @@ import Button from './Button'
 import Textbox from './Textbox'
 import DropDown from './DropDown'
 import Modal from './Modal'
+import {useCounter} from './hooks/useCounter';
 
-function Parent() {
-  const [count, setCount] = useState(0)
+const Parent =()=> {
+  const { count, incrementCounter, decrementCounter } = useCounter();
+  // console.log('test : ',count, 'function : ', incrementCounter, decrementCounter)
+  // const [count, setCount] = useState(0)
   const [name, setName] = useState("")
   const [open, setOpen] = useState(false);
 
-  const incrementCounter = useCallback(() => {
-    setCount(count + 1)
-  }, [count])
-
+  // const incrementCounter = useCallback(() => {
+  //   setCount(count + 1)
+  // }, [count])
+  // const decrementCounter = useCallback(() => {
+  //   if (count > 0) {
+  //     setCount(count - 1)
+  //   }
+  //   }, [count])
   const updateName = useCallback((e) => {
     const { value } = e.target
     setName(value)
@@ -42,7 +49,7 @@ function Parent() {
       <DropDown />
       <Title />
 
-      <Button count={count} handleClick={incrementCounter} />
+      <Button count={count} incrementCounter={incrementCounter} decrementCounter={decrementCounter} />
       <label>Name is <strong>{name.toUpperCase()}</strong></label>
       <Textbox text={name} handleClick={updateName} />
     </div>
