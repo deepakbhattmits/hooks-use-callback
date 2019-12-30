@@ -82,7 +82,10 @@ class DropDown extends Component {
             e.stopPropagation();
         }
         const { id } = e.target;
-        console.log(id);
+        const remainingOptions = this.state.options.filter(el =>
+            console.log("TEST :", typeof el.title)
+        );
+        console.log(typeof id, "want added again: ", remainingOptions);
     };
     KeyUp = e => {
         console.log("keyup", e.target.value);
@@ -91,6 +94,12 @@ class DropDown extends Component {
             el => el.title.toLowerCase().indexOf(value.toLowerCase()) > -1
         );
         console.log(selectedOption);
+        this.setState(
+            { options: selectedOption, selectedOption: "", show: true },
+            () => {
+                this.renderOptionDiv();
+            }
+        );
         if (e.keyCode === 13) {
             // this.setState({filteredOptionList: {...this.state.filteredOptionList,e.target.value})
         }
@@ -110,12 +119,11 @@ class DropDown extends Component {
                             <label
                                 className="ui label transition visible active"
                                 key={i}
-                                id={el}
                                 style={{ display: "inline-block !important" }}
                                 onClick={this.removeItem}
                             >
                                 {el}
-                                <i className="delete icon" />
+                                <i id={el} className="delete icon" />
                             </label>
                         );
                     })}
