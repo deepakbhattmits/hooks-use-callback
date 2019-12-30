@@ -1,15 +1,12 @@
 import React from 'react'
 
 const Button = props => {
-    const { count, incrementCounter, decrementCounter} = props
-
+    const { handleClick } = props;
     console.log("Button Component rendered")
     return (
-        <div>
-            <p>Counter : {count}</p>
-            <button onClick={incrementCounter}>Increment Counter</button>
-            <button onClick={decrementCounter}>Decrement Counter</button>
-        </div>
+        <>
+            <button onClick={handleClick}>{props.children}</button>
+        </>
     )
 }
 
