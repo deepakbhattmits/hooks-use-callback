@@ -49,7 +49,7 @@ const Parent =()=> {
       <DropDown />
       <Title />
        <Button handleClick={decrementCounter}>Decrement</Button>
-        <strong>{count}</strong>
+        <strong className='value'>{count}</strong>
       <Button handleClick={incrementCounter}>Increment</Button>
       <p>Name is <strong>{name.toUpperCase()}</strong></p>
       <Textbox text={name} handleClick={updateName} />
