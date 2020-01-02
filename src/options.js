@@ -1,5 +1,5 @@
 export const OPTIONS = [
-    { val: "-", title: "Select State" },
+    { val: "-", title: "State" },
     { val: "AL", title: "Alabama" },
     { val: "AK", title: "Alaska" },
     { val: "AZ", title: "Arizona" },
