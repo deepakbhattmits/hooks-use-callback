@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Title = () => {
-    // console.log("Title component rendered")
+    // console.log("Title component rendered :")
     return (
 
         <div>
