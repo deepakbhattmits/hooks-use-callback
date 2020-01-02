@@ -2,7 +2,7 @@ import React from 'react'
 
 const Modal = props => {
     const { open, close, onKeyUp } = props;
-    console.log(open, close, onKeyUp);
+    // console.log(open, close, onKeyUp);
     return (
         <div className={`ui dimmer modals page transition ${open ? 'animating fade in visible active' : 'hidden'}`} onClick={close} onKeyPress={onKeyUp} >
             <div className={`ui standard test modal scrolling transition ${open ? 'animating scale in visible active' : 'hidden'}`} onClick={(e) => e.stopPropagation()} >
