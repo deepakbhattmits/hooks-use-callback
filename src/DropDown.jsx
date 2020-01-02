@@ -66,7 +66,7 @@ class DropDown extends Component {
         const selectedOption = OPTIONS.filter(
             el => el.title.toLowerCase().indexOf(value.toLowerCase()) > -1
         );
-        console.log("this is : ", selectedOption);
+        // console.log("this is : ", selectedOption);
         // this.setState({
         //   selectedOption: {
         //     ...this.state.selectedOption,
