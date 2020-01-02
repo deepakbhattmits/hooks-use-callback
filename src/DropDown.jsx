@@ -117,7 +117,7 @@ class DropDown extends Component {
                     Object.values(this.state.filteredOptionList).map((el, i) => {
                         return (
                             <label
-                                className="ui label transition visible active"
+                                className="ui label transition visible active label"
                                 key={i}
                                 style={{ display: "inline-block !important" }}
                                 onClick={this.removeItem}
