@@ -8,7 +8,7 @@ import {useCounter} from './hooks/useCounter';
 
 const Parent =()=> {
   const { count, incrementCounter, decrementCounter } = useCounter();
-  // console.log('test : ',count, 'function : ', incrementCounter, decrementCounter)
+  // console.log(' test : ',count, 'function : ', incrementCounter, decrementCounter)
   // const [count, setCount] = useState(0)
   const [name, setName] = useState("")
   const [open, setOpen] = useState(false);
