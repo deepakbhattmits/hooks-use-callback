@@ -30,7 +30,7 @@ class DropDown extends Component {
         );
     };
     filteredOption = title => {
-        console.log("want REMAIN : ", title);
+        // console.log("want REMAIN : ", title);
         const remainingOptions = this.state.options.filter(
             el => el.title !== title
         );
