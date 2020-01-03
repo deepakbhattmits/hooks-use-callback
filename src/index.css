@@ -17,7 +17,7 @@ body {
 }
 .ui.modals.scale.in.visible.active {
   display: block !important;
-  animation-duration: 1000ms;
+  animation-duration: 999ms;
 }
 button {
   font: inherit;
