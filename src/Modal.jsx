@@ -4,7 +4,7 @@ import React from 'react';
 
 const Modal = props => {
 	const { open, close, onKeyUp } = props;
-	// console.log('TEST :', open, close, onKeyUp);
+	console.log('TEST keyup function:', open, close, onKeyUp);
 	return (
 		<div
 			className={`ui dimmer modals page transition ${
