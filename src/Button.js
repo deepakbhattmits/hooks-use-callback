@@ -7,7 +7,7 @@ const Button = props => {
 	// console.log('Button Component rendered:');
 	return (
 		<>
-			<button className='btn' onClick={handleClick}>
+			<button className='btn btn-default' onClick={handleClick}>
 				{props.children}
 			</button>
 		</>
