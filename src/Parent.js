@@ -11,9 +11,9 @@ import { useCounter } from './hooks/useCounter';
 const Parent = () => {
 	const { count, incrementCounter, decrementCounter } = useCounter();
 	console.log(
-		' test : ',
+		' test 0 : ',
 		count,
-		'function : ',
+		'function 0 : ',
 		incrementCounter,
 		decrementCounter
 	);
