@@ -8,6 +8,7 @@ const Textbox = props => {
 	return (
 		<div>
 			<input
+				className='input'
 				type='text'
 				placeholder='Enter Name'
 				value={name}
