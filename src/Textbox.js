@@ -4,7 +4,7 @@ import React from 'react';
 
 const Textbox = props => {
 	const { name, handleClick } = props;
-	// console.log('Textbox :> Rendered');
+	console.log('Textbox :> Rendered');
 	return (
 		<div>
 			<input
