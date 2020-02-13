@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 
 export const useCounter = () => {
 	const [count, setCount] = useState(0);
