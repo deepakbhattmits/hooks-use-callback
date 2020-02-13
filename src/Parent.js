@@ -9,7 +9,7 @@ import Modal from './Modal';
 import { useCounter } from './hooks/useCounter';
 
 const Parent = () => {
-	// const { count, incrementCounter, decrementCounter } = useCounter();
+	const { count, incrementCounter, decrementCounter } = useCounter();
 	// console.log(
 	// 	' test 0 : ',
 	// 	count,
